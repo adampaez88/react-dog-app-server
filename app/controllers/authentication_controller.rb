@@ -8,7 +8,7 @@ class AuthenticationController < ApplicationController
             if user.authenticate(params[:password])
                 secret_key = Rails.application.secrets.secret_key_base[0]
                 token = JWT.encode({user_id: user.id, username: user.username}, secret_key)
-                render json: {token: token}
+                render json: {token: token, user_id: user.id}
             else
                 render json: {message: 'Invalid'}
             end
