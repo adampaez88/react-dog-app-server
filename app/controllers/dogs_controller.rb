@@ -1,5 +1,5 @@
 class DogsController < ApplicationController
-    # before_aciton :authenticate, only: [:create, :update, :destroy]
+    before_action :authenticate, only: [:create, :update, :destroy]
    
     def index
         dogs = Dog.all
@@ -18,7 +18,7 @@ class DogsController < ApplicationController
             info_url: params[:info_url],
             user: @user
         )
-        render json: {dog: dog}
+        render json: dog
     end
 
     def update
@@ -32,9 +32,9 @@ class DogsController < ApplicationController
             bred_for: params[:bred_for],
             image_url: params[:image_url],
             info_url: params[:info_url],
-            user: @user
+            # user: @user
         )
-        render json: {dog: dog}
+        render json: dog
     end
 
     def destroy
