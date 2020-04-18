@@ -6,8 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
+Comment.destroy_all
 Dog.destroy_all
+User.destroy_all
 
 adam = User.create(
     email: 'adam987@comcast.net',
@@ -2086,4 +2087,10 @@ Dog.create(
     image_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxFeo0qOK2AGBS3hTNMLdJfhTLhRdSxJANE9W2y8RLzuxqQamq&s',
     info_url: 'https://www.akc.org/dog-breeds/yorkshire-terrier/',
     user: adam
+)
+
+Comment.create(
+    content: 'Comment:',
+    user_id: 1,
+    dog_id: 1
 )
