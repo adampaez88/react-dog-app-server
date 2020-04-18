@@ -1,18 +1,17 @@
 class CommentsController < ApplicationController
-    before_aciton :authenticate, only: [:create, :update, :destroy]
     
     def index
         comments = Comment.all
-        render json: {commets: comments}
+        render json: comments
     end
 
     def create
         comment = Comment.create(
             content: params[:content],
-            user_id: params[:user_id],
-            dog_id: params[:dog_id]
+            dog_id: params[:dog_id],
+            user: @user
         )
-        render json: {comment: comment}
+        render json: comment
     end
 
     def update
@@ -22,7 +21,7 @@ class CommentsController < ApplicationController
             user_id: params[:user_id],
             dog_id: params[:dog_id]
         )
-        render json: {comment: comment}
+        render json: comment
     end
 
     def destroy
@@ -31,9 +30,9 @@ class CommentsController < ApplicationController
         render json: {status: 204}
     end
 
-    private 
+    # private 
 
-    def comments_params
-        params.require(:comment).permit(:content, :dog_id, :user_id)
-    end
+    # def comments_params
+    #     params.require(:comment).permit(:content, :dog_id, :user_id)
+    # end
 end
